@@ -34,6 +34,9 @@ ux0:app/PSPEMUCFW/sce_module/adrenaline_kernel.skprx
 Changelog
 ---------
 
+### Changelog v7.1.1
+- Fixed version info.
+
 ### Changelog v7.1
 - Fixed XMB camera app.
 - Added support for PS2/PS3 <-> PSP game link.

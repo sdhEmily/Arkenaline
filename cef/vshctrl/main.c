@@ -780,25 +780,31 @@ void PatchVshMain(u32 text_addr) {
 	ClearCaches();	
 }
 
-wchar_t verinfo[] = L"6.61 Adrenaline    ";
+//wchar_t verinfo[] = L"6.61 Adrenaline-     ";
 wchar_t macinfo[] = L"00:00:00:00:00:00";
+
+// Credits: ARK-4
+static inline void ascii2utf16(char *dest, const char *src)
+{
+    while(*src != '\0') {
+        *dest++ = *src;
+        *dest++ = '\0';
+        src++;
+    }
+    *dest++ = '\0';
+    *dest++ = '\0';
+}
 
 void PatchSysconfPlugin(u32 text_addr) {
 	int version = sctrlSEGetVersion();
-	int version_major = version >> 16;
-	int version_minor = version & 0xFFFF;
+	int version_major = version >> 24;
+	int version_minor = version >> 16 & 0xFF;
+	int version_micro = version & 0xFF;
 
-	if (version_major > 1) {
-		verinfo[15] = '-';
-		verinfo[16] = '0' + version_major;
+	char verinfo[50] = {0};
+	sprintf(verinfo, "6.61 Adrenaline-%d.%d.%d", version_major, version_minor, version_micro );
 
-		if (version_minor > 0) {
-			verinfo[17] = '.';
-			verinfo[18] = '0' + version_minor;
-		}
-	}
-
-	memcpy((void *)text_addr + 0x2A62C, verinfo, sizeof(verinfo));
+	ascii2utf16( (char*)((void *)text_addr + 0x2A62C), verinfo);
 
 	_sw(0x3C020000 | ((u32)(text_addr + 0x2A62C) >> 16), text_addr + 0x192E0);
 	_sw(0x34420000 | ((u32)(text_addr + 0x2A62C) & 0xFFFF), text_addr + 0x192E4);

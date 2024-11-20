@@ -81,9 +81,7 @@ int main(void) {
 	printf("6.61 Adrenaline-%d.%d.%d Installer\n", ADRENALINE_VERSION_MAJOR, ADRENALINE_VERSION_MINOR, ADRENALINE_VERSION_MICRO);
 	printf("Changes:\n\n");
 
-	printf("- Fixed XMB camera app.\n");
-	printf("- Added support for PS2/PS3 <-> PSP game link.\n");
-	printf("- Cleaner recovery with adjustable color.\n");
+	printf("- Fixed version info.\n");
 
 	printf("\n");
 
