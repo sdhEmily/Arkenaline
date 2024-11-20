@@ -799,7 +799,7 @@ void PatchSysconfPlugin(u32 text_addr) {
 	int version = sctrlSEGetVersion();
 	int version_major = version >> 24;
 	int version_minor = version >> 16 & 0xFF;
-	int version_micro = version & 0xFF;
+	int version_micro = version >> 8 & 0xFF;
 
 	char verinfo[50] = {0};
 	sprintf(verinfo, "6.61 Adrenaline-%d.%d.%d", version_major, version_minor, version_micro );
