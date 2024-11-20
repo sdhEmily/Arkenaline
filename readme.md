@@ -11,7 +11,8 @@ inject custom code into the IPL which allows unsigned code to run at boottime.
 
 How to update
 -------------
-If you have already been using Adrenaline, simply open Adrenaline.vpk as zip file and copy all modules from sce_module to ux0:app/PSPEMUCFW/sce_module.
+If you have already been using Adrenaline, simply open Adrenaline.vpk as zip file and copy all modules from sce_module to ux0:app/PSPEMUCFW/sce_module.  
+Alternatively, use "System update" from XMB and follow instructions.
 
 How to install
 --------------
