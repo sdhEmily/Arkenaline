@@ -35,6 +35,10 @@ ux0:app/PSPEMUCFW/sce_module/adrenaline_kernel.skprx
 Changelog
 ---------
 
+### Changelog v7.1.2
+- Fixed photo/video browser.
+- Don't load plugins in recovery.
+
 ### Changelog v7.1.1
 - Fixed version info.
 

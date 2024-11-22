@@ -81,7 +81,8 @@ int main(void) {
 	printf("6.61 Adrenaline-%d.%d.%d Installer\n", ADRENALINE_VERSION_MAJOR, ADRENALINE_VERSION_MINOR, ADRENALINE_VERSION_MICRO);
 	printf("Changes:\n\n");
 
-	printf("- Fixed version info.\n");
+	printf("- Fixed photo/video browser.\n");
+	printf("- Don't load plugins in recovery.\n");
 
 	printf("\n");
 

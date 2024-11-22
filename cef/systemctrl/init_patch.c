@@ -281,7 +281,9 @@ int PatchInit(int (* module_bootstart)(SceSize, void *), void *argp) {
 	_sw(0x02402021, init_addr + 0x1868); //move $a0, $s2
 	MAKE_CALL(init_addr + 0x1878, sceKernelLoadModuleBufferBootInitBtcnfPatched);
 
-	MAKE_JUMP(init_addr + 0x1C5C, sceKernelStartModulePatched);
+	// TODO: don't hook in recovery
+	if(rebootex_config.bootfileindex != BOOT_RECOVERY)
+		MAKE_JUMP(init_addr + 0x1C5C, sceKernelStartModulePatched);
 
 	ClearCaches();
 
