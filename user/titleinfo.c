@@ -51,7 +51,39 @@ int ScePspemuInitTitleSpecificInfoPatched(const char *titleid, SceUID uid) {
     return -1;
   }
 
-  // enable usbpspcm pairing
+  // flags
+  // 0x00000001 - if not set, call sceCompatLCDCSync();
+  // 0x00000002 - something fs related
+  // 0x00000004 - param for sceCompatInitEx. also returned by subsystem 0x9 cmd 0x423
+  // 0x00000008
+  // 0x00000010 - enable usbpspcm pairing (also controls sceShellUtilUnlock(0x10))
+  // 0x00000020 - ?? dmac related?
+  // 0x00000040 - if set, wlan config | 2
+  // 0x00000080 - adds 2sec delay to subsystem 0x9 cmd 0x424
+  // 0x00000100 - does char -> wchar translation for something in ime
+  // 0x00000200 - acc subsystem. if not set calls scePowerRequestSuspend on cmd 0x421
+  // 0x00000400 - promote - related
+  // 0x00000800 - me-related? sets some peripheral state
+  // 0x00001000 - control-related, along with 0x00400000 and 0x40000000
+  // 0x00002000 - msfs related? controls sceCompatGetDevInf calls
+  // 0x00004000 - ?? usb / audio-in related?
+  // 0x00008000 - net-related. subsystem 0xA, cmd 0x4d, 0x3f and subsystem 0x9 cmd 0x422
+  // 0x00010000 - ??
+  // 0x00020000
+  // 0x00040000
+  // 0x00080000 - msfs. update short filenames in dread
+  // 0x00100000 - ?? flashfs related? increase io cache size
+  // 0x00200000 - me - related
+  // 0x00400000 - control - related
+  // 0x00800000 - ?? audio related? pspcm related? pocket - station related?
+  // 0x01000000 - use memcpy instead of dmacmemcpy
+  // 0x02000000 - pocketstation - related
+  // 0x04000000 - pocketstation - related
+  // 0x08000000 - ?? time related? pocketstation related?
+  // 0x10000000 - enables setting some adhoc flag
+  // 0x20000000
+  // 0x40000000 - control - related. pocket - station related?
+  // 0x80000000 - adhoc-related. disables adhoc?
   unk[0] = 0x10;
 
   // Video delay
@@ -60,12 +92,14 @@ int ScePspemuInitTitleSpecificInfoPatched(const char *titleid, SceUID uid) {
 
   // Use current titleid for adhoc if
   // it's set to any other value than 0xFFFFFFFF
+  // adds delay?
   info[0x01] = 0xFFFFFFFF;
 
   // IO read delay
   info[0x02] = 0xFFFFFFFF;
 
   // One of those games. Adhoc related
+  // use hardcoded titleid for adhoc?
   // 0x0: ULJS00218
   // 0x1: ULES01275
   // 0x2: ULES00703
@@ -79,13 +113,14 @@ int ScePspemuInitTitleSpecificInfoPatched(const char *titleid, SceUID uid) {
   // Net send delay
   info[0x05] = 0xFFFFFFFF;
 
-  // Audio delay. Used in socom
+  // Audio in delay. Used in socom
   info[0x06] = 0xFFFFFFFF;
 
-  // Net send related
+  // Adhoc / Net send related
   info[0x07] = 0xFFFFFFFF;
 
   // Delay. Not sure for what
+  // Error dialog related?
   info[0x08] = 0xFFFFFFFF;
 
   // Msfs lseek patch. Value 0 or 1. Used in Ratched & Clank
@@ -117,12 +152,19 @@ int ScePspemuInitTitleSpecificInfoPatched(const char *titleid, SceUID uid) {
   info[0x0B] = 0xFFFFFFFF;
 
   // This enables audio in MotorStorm
+  // values: 
+  // 0x1000
+  // 0x800
+  // 0x80
   info[0x0C] = 0x1000;
 
   // Net termination delay
   info[0x0D] = 0xFFFFFFFF;
 
   // Use ME 2. Used in Harvest Moon
+  // 0x1 - use kermit_peripheral instead of ge (???)
+  // 0x2 - use ge2 instead of ge
+  // 0x4 - use me2 instead of me
   info[0x0E] = 0xFFFFFFFF;
 
   // Wlan related. Only used in B-Boy
@@ -138,12 +180,14 @@ int ScePspemuInitTitleSpecificInfoPatched(const char *titleid, SceUID uid) {
   info[0x12] = 0xFFFFFFFF;
 
   // The game Thrillville sets this to 1
+  // SAS - related?
   info[0x13] = 0xFFFFFFFF;
 
   // Video delay. Used in Dangan-Ronpa
   info[0x14] = 0xFFFFFFFF;
 
   // If set to 0, the wlan switch is turned off. Used in Metal Slug
+  // (sceWlanGetConfiguration)
   info[0x15] = 0xFFFFFFFF;
 
   // Unknown. Video related
@@ -159,12 +203,14 @@ int ScePspemuInitTitleSpecificInfoPatched(const char *titleid, SceUID uid) {
   info[0x18] = 0xFFFFFFFF;
 
   // Unknown. Adhoc related?
+  // PocketStation related?
   info[0x19] = 0xFFFFFFFF;
 
   // Unknown. Adhoc related?
   info[0x1A] = 0xFFFFFFFF;
 
   // Unknown. Adhoc related?
+  // PocketStation related?
   info[0x1B] = 0xFFFFFFFF;
 
   // Unknown. Adhoc related?
