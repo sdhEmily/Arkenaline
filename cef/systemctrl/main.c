@@ -655,6 +655,7 @@ int OnModuleStart(SceModule2 *mod) {
 		log("Key Config: 0x%X\n", sceKernelInitKeyConfig());
 		log("Apitype: 0x%X\n", sceKernelInitApitype());
 		log("Filename: %s\n", sceKernelInitFileName());
+		log("Is recovery: %d\n", rebootex_config.is_recovery);
 
 		sctrlSEGetConfig(&config);
 
@@ -757,7 +758,6 @@ int OnModuleStart(SceModule2 *mod) {
 }
 
 int module_start(SceSize args, void *argp) {
-	memcpy(&rebootex_config, (void *)0x88FB0000, sizeof(RebootexConfig));
 	PatchSysmem();
 	PatchLoadCore();
 	PatchInterruptMgr();
@@ -771,6 +771,8 @@ int module_start(SceSize args, void *argp) {
 	UnprotectExtraMemory();
 
 	initAdrenaline();
+
+	memcpy(&rebootex_config, (void *)0x88FB0000, sizeof(RebootexConfig));
 
 	return 0;
 }

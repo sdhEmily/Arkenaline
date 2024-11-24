@@ -184,6 +184,7 @@ typedef struct {
 	u32 ram11;
 
 	char umdfilename[256];
+	int is_recovery;
 } RebootexConfig;
 
 int sctrlGetUsbState();
