@@ -1,0 +1,10 @@
+build
+cef/systemctrl/binary.h
+cef/systemctrl/rebootex.h
+user/flash0/kd/inferno.prx
+user/flash0/kd/popcorn.prx
+user/flash0/kd/psp*.bin
+user/flash0/kd/*ctrl.prx
+user/flash0/vsh/module/*.prx
+user/flash0/payloadex.bin
+*.o
